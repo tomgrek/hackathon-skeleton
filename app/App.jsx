@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './App.css';
+import styles from './App.scss';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -8,8 +8,8 @@ export default class App extends React.Component {
   }
   render() {
     return (
-      <div className={styles.app}>
-        barzigs
+      <div className="app">
+        HELLO
       </div>
     );
   }

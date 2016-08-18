@@ -1,5 +1,7 @@
+$myred: #ee440f;
+
 .app {
-  background-color: red;
+  background-color: $myred;
   height: 50px;
   border: 1px solid blue;
 }

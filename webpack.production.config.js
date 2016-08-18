@@ -35,7 +35,8 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
-    })
+    }),
+    new ExtractTextPlugin('[name]-[hash].min.css'),
   ],
   module: {
     loaders: [{
@@ -51,6 +52,9 @@ module.exports = {
     }, {
       test: /\.css$/,
       loader: ExtractTextPlugin.extract('style', 'css?modules&localIdentName=[name]---[local]---[hash:base64:5]!postcss')
+    }{
+      test: /\.scss$/,
+      loaders: ExtractTextPlugin.extract('css!sass!postcss')
     }]
   },
   postcss: [
