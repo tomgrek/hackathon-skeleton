@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/christianalfoni/webpack-express-boilerplate",
   "scripts": {
-    "test": "mocha",
+    "test": "echo please type TESTING=true mocha ./test/tests.js as there is some problem with probably npm or maybe mocha",
     "start": "node server",
     "build": "rimraf dist && cross-env NODE_ENV=production webpack --config ./webpack.production.config.js --progress --profile --colors",
     "eslint": "eslint .",
