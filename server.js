@@ -8,7 +8,7 @@ const webpackHotMiddleware = require('webpack-hot-middleware');
 const config = require('./webpack.config.js');
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/project');
+mongoose.connect('mongodb://devMongo:27017/project'); //in local (dev) machine use mongodb://localhost/project, here use 172.17.0.4:27017/project (docker inspect to find container ip)
 var db =mongoose.connection;
 db.on('error',console.error);
 db.once('open', function() {

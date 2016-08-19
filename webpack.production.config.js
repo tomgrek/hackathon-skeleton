@@ -52,9 +52,9 @@ module.exports = {
     }, {
       test: /\.css$/,
       loader: ExtractTextPlugin.extract('style', 'css?modules&localIdentName=[name]---[local]---[hash:base64:5]!postcss')
-    }{
+    },{
       test: /\.scss$/,
-      loaders: ExtractTextPlugin.extract('css!sass!postcss')
+      loader: ExtractTextPlugin.extract('css!sass!postcss')
     }]
   },
   postcss: [
