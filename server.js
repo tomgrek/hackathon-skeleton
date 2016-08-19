@@ -8,7 +8,13 @@ const webpackHotMiddleware = require('webpack-hot-middleware');
 const config = require('./webpack.config.js');
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://devMongo:27017/project'); //in local (dev) machine use mongodb://localhost/project, here use 172.17.0.4:27017/project (docker inspect to find container ip)
+
+const isDeveloping = process.env.NODE_ENV !== 'production';
+
+// Deploy a mongo container first with a name e.g. devMongo. This container needs to be deployed with:
+// [screen] docker run [--name MyContainer] --link devMongo:devMongo -p [PORT exposed to the outside e.g. 8081]:3000 [tag e.g. myTag]
+const mongoAddress = isDeveloping ? 'mongodb://localhost/project' : 'mongodb://devMongo:27017/project';
+mongoose.connect(mongoAddress); //in local (dev) machine use mongodb://localhost/project, here use 172.17.0.4:27017/project (docker inspect to find container ip)
 var db =mongoose.connection;
 db.on('error',console.error);
 db.once('open', function() {
@@ -21,7 +27,7 @@ Name.find({}, function(err,name) { console.log('##'+name); });
 //db.close();
 });
 
-const isDeveloping = process.env.NODE_ENV !== 'production';
+
 const port = isDeveloping ? 3000 : process.env.PORT;
 const app = express();
 
@@ -64,7 +70,7 @@ app.get('/zig', function response(req,res) {
   app.get('*', function response(req, res) {
     res.sendFile(path.join(__dirname, 'dist/index.html'));
   });
-  
+
 }
 
 app.listen(port, '0.0.0.0', function onStart(err) {
