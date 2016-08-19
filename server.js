@@ -82,3 +82,6 @@ app.listen(port, '0.0.0.0', function onStart(err) {
   //console.log(Name.find());
   //Name.find({},(err,names)=>console.log(names));
 });
+
+var multiply = require('./functions/multiply.js').multiply;
+module.exports = { testfunc: function(avar) { return avar; }, mulFunc: function(a,b) { return multiply(a,b); } };
