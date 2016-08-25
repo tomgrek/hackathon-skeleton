@@ -56,6 +56,7 @@ function main() {
       });
       app.get('/zig2/:id', function response(req, res) {
         res.write(req.params.id);
+        res.write('ZIG');
         res.end();
       });
       app.get('*', function response(req, res) {
@@ -65,7 +66,7 @@ function main() {
     } else {
       app.use(express.static(__dirname + '/dist'));
     app.get('/zig', function response(req,res) {
-    	res.write('ZIGBOAB');
+    	res.write('ZIG');
     	res.end();
       });
       app.get('*', function response(req, res) {
@@ -85,7 +86,7 @@ function main() {
     });
 };
 
-if (!process.env.TESTING) main();
+main();
 
 var multiply = require('./functions/multiply.js').multiply;
-module.exports = { testfunc: function(avar) { return avar; }, mulFunc: function(a,b) { return multiply(a,b); } };
+module.exports = { testFunc: function(avar) { return avar; }, mulFunc: function(a,b) { return multiply(a,b); } };
