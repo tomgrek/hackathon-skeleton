@@ -71,12 +71,14 @@ Then, from your local machine, open your domain name in your browser. No subdoma
 Docker has downloaded the tutum/hello-world image from DockerHub, and is running it in a container. Docker maps outside port 80 (HTTP) to the container's port 80.
 
 I like to run Docker in a 'screen', that is, a perpetually running terminal on the machine.
+
 ```
 apt-get install screen
 screen // now you get a new terminal
 // then run the docker container as above
 // then use ctrl-A then ctrl-D to leave the screen. Whatever is in there is still running.
 // You can use screen -x to return to the screen at any point later, even if you have left the SSH session etc.
+```
 
 ### A bit more about Docker
 
