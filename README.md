@@ -27,6 +27,11 @@ npm run start // wait while Webpack builds your project
 // visit http://localhost:3000 in your browser
 ```
 
+## How did this originate?
+
+See [Christian Alfoni's blog post](http://www.christianalfoni.com/articles/2015_04_19_The-ultimate-webpack-setup) for details on the technical webpack setup. This
+project began as a fork of his [repo](https://github.com/christianalfoni/webpack-express-boilerplate).
+
 ## How to deploy?
 
 First, you need a server. I use Linode. Deploy a fresh Ubuntu 16.04 and SSH into it. Since this is a bunch of projects and not a real deployment, stick with root access for simplicity.
