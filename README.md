@@ -88,10 +88,12 @@ Useful commands for Docker:
 * docker images (these build up, so clean house now and again)
 * docker rmi (deletes an image)
 * docker rm (removes a container)
-* docker kill [id or name] (kills a running container)
-* docker attach [id or name] (gets you the active terminal in that container)
-* docker exec -i -t [id or name] /bin/bash (starts a new, usable terminal in a running container, useful for troubleshooting)
+* docker kill [[id or name]] (kills a running container)
+* docker attach [[id or name]] (gets you the active terminal in that container)
+* docker exec -i -t [[id or name]] /bin/bash (starts a new, usable terminal in a running container, useful for troubleshooting)
 * docker build -t . (run from the project directory: builds an image according to Dockerfile. Can take awhile)
+
+Note the dot in the last command above. It's important!
 
 When you build a Docker image you can move it between machines and run it, and it should work. However, Docker images are BIG, so this is impractical. Instead,
 you're going to use Github to transfer stuff between your local machine and the server.
@@ -187,7 +189,7 @@ apt-get install mongodb-clients
 ```
 
 During development, you'll also need Mongo installed on your local machine. You *could*, I suppose, do it in the same way as on the server,
-that is running it in a container. I don't do that. I develop on Ubuntu, and followed the installation instructions (here)[https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/].
+that is running it in a container. I don't do that. I develop on Ubuntu, and followed the installation instructions [here](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/).
 
 ### Useful mongo commands
 
