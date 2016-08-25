@@ -31,6 +31,8 @@ function main() {
 
     const port = isDeveloping ? 3000 : process.env.PORT;
     const app = express();
+    app.use(express.static('public')); // serve static files - JS, CSS, fonts etc - from the public directory
+    // e.g. on the filesystem /home/app/public/jquery.js would become http://localhost:3000/jquery.js
 
     if (isDeveloping) {
       const compiler = webpack(config);
