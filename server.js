@@ -1,4 +1,9 @@
-/* eslint no-console: 0 */
+/* Skeleton server application
+to get started at localhost: npm install / npm run start
+on the server: npm install / npm run build / docker build -t [imageName] .
+then start a mongo container: screen docker run --restart=always --name devMongo -p 27017:27017 -d mongo
+then deploy: docker run  --restart=always [--name MyContainer] --link devMongo:devMongo -p [PORT exposed to the outside e.g. 8081]:3000 [imageName]
+*/
 
 function main() {
     const path = require('path');
@@ -12,10 +17,8 @@ function main() {
 
     const isDeveloping = process.env.NODE_ENV !== 'production';
 
-    // Deploy a mongo container first with a name e.g. devMongo. This container needs to be deployed with:
-    // [screen] docker run [--name MyContainer] --link devMongo:devMongo -p [PORT exposed to the outside e.g. 8081]:3000 [tag e.g. myTag]
     const mongoAddress = isDeveloping ? 'mongodb://localhost/project' : 'mongodb://devMongo:27017/project';
-    mongoose.connect(mongoAddress); //in local (dev) machine use mongodb://localhost/project, here use 172.17.0.4:27017/project (docker inspect to find container ip)
+    mongoose.connect(mongoAddress);
     var db =mongoose.connection;
     db.on('error',console.error);
     db.once('open', function() {
@@ -51,11 +54,6 @@ function main() {
 
       app.use(middleware);
       app.use(webpackHotMiddleware(compiler));
-      app.get('/zig', function response(req,res) {
-        console.log(req.params);
-        res.write(JSON.stringify(req.params));
-        res.end();
-      });
       app.get('/zig2/:id', function response(req, res) {
         res.write(req.params.id);
         res.write('ZIG');
@@ -66,12 +64,9 @@ function main() {
         res.end();
       });
     } else {
+      app.use('/public', express.static('public'));
       app.use(express.static(__dirname + '/dist'));
-    app.get('/zig', function response(req,res) {
-    	res.write('ZIG');
-    	res.end();
-      });
-      app.get('*', function response(req, res) {
+      app.get('/', function response(req, res) {
         res.sendFile(path.join(__dirname, 'dist/index.html'));
       });
 

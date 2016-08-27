@@ -15,7 +15,7 @@ This README file also contains complete instructions for deploying projects made
 * Uses Mongo at the backend, providing a database
 * Has Mocha, Chai, and Zombie for automated tests - back-end *and* front-end!
 
-## How to use it? 
+## How to use it?
 
 ```
 git clone https://github.com/tomgrek/bootcamp-skeleton
@@ -60,7 +60,7 @@ service docker start
 docker run hello-world // verify it's working
 ```
 
-Next to get Docker exposed to the outside world. 
+Next to get Docker exposed to the outside world.
 
 ```
 service ufw status // check if firewall is running. If so...:
@@ -97,6 +97,7 @@ Useful commands for Docker:
 * docker attach [[id or name]] (gets you the active terminal in that container)
 * docker exec -i -t [[id or name]] /bin/bash (starts a new, usable terminal in a running container, useful for troubleshooting)
 * docker build -t . (run from the project directory: builds an image according to Dockerfile. Can take awhile)
+* docker inspect [[id or name]] (inspects the running container, you can find its relative IP address etc)
 
 Note the dot in the last command above. It's important!
 
@@ -135,10 +136,16 @@ git clone https://[yourGithubUsername]/[your repo name].git
 npm install // install npm/node with apt-get install npm first!
 // you may need to use this command: ln -s /usr/bin/nodejs /usr/bin/node
 npm run build // runs the 'build' command, see package.json
-docker build -t [tag, call it anything, I'll use 'test' in this guide] .
+docker build -t [tag, call it anything lowercase and unique - I'll use 'test' in this guide] .
 ```
 
-But, before you can run the container, we need to set up Nginx.
+Note the period again at the end of the last line. It'll take a little while to execute, though many of the build
+steps are cached (including (unless your package.json has been modified) the 'npm install' step, which is a great time saver.)
+
+Because of the caching, don't delete an image/remove a container before you've re-built the new container, or you'll lose the
+benefits. (Although it is perfectly safe to do so.)
+
+Now, before you can run the container, we need to set up Nginx.
 
 ## Nginx set up
 
@@ -147,7 +154,7 @@ to get many websites running on the same server. We do this by putting Nginx, a 
 
 ```
 apt-get install nginx
-rm -rf /etc/nginx/sites-enabled 
+rm -rf /etc/nginx/sites-enabled
 mv /etc/nginx/sites-available /etc/nginx/sites-enabled
 service nginx restart
 ```
@@ -167,6 +174,8 @@ server {
 	}
 }
 ```
+
+Than run ```service nginx restart```.
 
 You can add many such entries, one for each project you make! It's why you set up sub-domains earlier. Keep a note of the ports you use, as those
 are the ones we need to expose from Docker. You can choose any port number that doesn't conflict with a running service, so not e.g. 80 which is HTTP, 443 which is SSL etc.
@@ -223,7 +232,7 @@ screen docker run -d --restart=always --name MyProject --link devMongo:devMongo 
 ```
 
 Now you can visit http://project1.exploitip.com (or whatever domain and sub-domain you are using) in your browser. Viola!
- 
+
 # TODO
 
 * Use pm2 to manage the running node process
