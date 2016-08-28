@@ -2,7 +2,8 @@
 to get started at localhost: npm install / npm run start
 on the server: npm install / npm run build / docker build -t [imageName] .
 then start a mongo container: screen docker run --restart=always --name devMongo -p 27017:27017 -d mongo
-then deploy: docker run  --restart=always [--name MyContainer] --link devMongo:devMongo -p [PORT exposed to the outside e.g. 8081]:3000 [imageName]
+then deploy: docker run  --restart=always [--name MyContainer] --link devMongo:devMongo -p [PORT exposed to the outside e.g. 80]:3000 [imageName]
+see README.md for step-by-step instructions
 */
 
 function main() {
@@ -15,28 +16,38 @@ function main() {
 
     const mongoose = require('mongoose');
 
+    // dev mode (hot reload etc) is default, unless you set the environment variable
+    // (it is set for you by default when you run npm run build, which builds the production app)
     const isDeveloping = process.env.NODE_ENV !== 'production';
 
+    // connect to the mongo database
     const mongoAddress = isDeveloping ? 'mongodb://localhost/project' : 'mongodb://devMongo:27017/project';
+    mongoose.Promise = Promise;
     mongoose.connect(mongoAddress);
-    var db =mongoose.connection;
+    var db = mongoose.connection;
+    // error logging - you may want to handle this differently
     db.on('error',console.error);
+
+    /* some simple, example db operations.
     db.once('open', function() {
-    var nameSchema = mongoose.Schema({ _id: String, name: String });
-    var Name = mongoose.model('Name', nameSchema);
-    Name.find({}, function(err,name) { console.log('##'+name); });
-    //var tom = new Name({_id:'3',name:'createdhere'});
-    //tom.save( function(err,tom) { console.log(tom); });
-    //Name.find({}, (err,names)=>console.log(names));
-    //db.close();
-    });
+      var nameSchema = mongoose.Schema({ _id: String, name: String });
+      var Name = mongoose.model('Name', nameSchema);
+      var aFirstDataItem = new Name({_id:'1',name:'Created within bootcamp-skeleton'});
+      aFirstDataItem.save( function(err,data) { console.log(data); });
+      Name.find({}).then(function(data) { console.log(data); });
+      db.close();
+    });*/
 
-
+    // default port is 3000, unless you've set an environment variable
     const port = isDeveloping ? 3000 : process.env.PORT;
+    // create the app (Express server)
     const app = express();
-    app.use(express.static('public')); // serve static files - JS, CSS, fonts etc - from the public directory
-    // e.g. on the filesystem /home/app/public/jquery.js would become http://localhost:3000/jquery.js
 
+    // serve static files - JS, CSS, fonts etc - from the public directory
+    // e.g. on the filesystem /home/app/public/jquery.js would become http://localhost:3000/jquery.js
+    app.use(express.static('public'));
+
+    // bundle a bunch of useful things in if we're in dev mode (i.e. running on local machine)
     if (isDeveloping) {
       const compiler = webpack(config);
       const middleware = webpackMiddleware(compiler, {
@@ -51,25 +62,28 @@ function main() {
           modules: false
         }
       });
-
       app.use(middleware);
       app.use(webpackHotMiddleware(compiler));
-      app.get('/zig2/:id', function response(req, res) {
-        res.write(req.params.id);
-        res.write('ZIG');
+
+      // an example route
+      app.get('/example_rest_endpoint/:id', function response(req, res) {
+        res.write(`hello ${req.params.id}`); // or you can use res.json({some object})
         res.end();
       });
+
+      // if the routes above didn't do anything, then do this:
       app.get('*', function response(req, res) {
         res.write(middleware.fileSystem.readFileSync(path.join(__dirname, 'dist/index.html')));
         res.end();
       });
+
+      // but if we're in production, do this instead:
     } else {
       app.use('/public', express.static('public'));
       app.use(express.static(__dirname + '/dist'));
       app.get('/', function response(req, res) {
         res.sendFile(path.join(__dirname, 'dist/index.html'));
       });
-
     }
 
     app.listen(port, '0.0.0.0', function onStart(err) {
@@ -77,13 +91,10 @@ function main() {
         console.log(err);
       }
       console.info('==> 🌎 Listening on port %s. Open up http://0.0.0.0:%s/ in your browser.', port, port);
-      //console.log(Name.find({_id:1},function(err,names) { console.log(names); }));
-      //console.log(Name.find());
-      //Name.find({},(err,names)=>console.log(names));
     });
 };
 
 main();
 
+// import functions from other files as follows (which is good practice)
 var multiply = require('./functions/multiply.js').multiply;
-module.exports = { testFunc: function(avar) { return avar; }, mulFunc: function(a,b) { return multiply(a,b); } };

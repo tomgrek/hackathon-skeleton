@@ -1,6 +1,6 @@
 # Bootcamp Skeleton
 
-A skeleton (boilerplate) for quickly getting started on coding bootcamp projects. Suitable for prototyping and quick deployment.
+A skeleton (boilerplate) for quickly getting started on coding bootcamp projects. Suitable for prototyping and quick deployment. State-of-the-art, best practices, efficient web development.
 
 This README file also contains complete instructions for deploying projects made with this template to a brand new cloud server running Ubuntu.
 
