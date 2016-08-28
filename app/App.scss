@@ -1,5 +1,4 @@
-$myred: #ee440f;
-
+/* This is a CSS reset */
 * {
   margin: 0;
   padding: 0;
@@ -19,10 +18,14 @@ body {
   width: 100%;
 }
 
+/* This is a little bit of SASS */
+$myred: #ee440f;
+
 .app {
   background-color: $myred;
-  height: 50px;
-  border: 1px solid blue;
+  height: 6em;
+  margin: 2em 2em 0 2em;
+  border: 3px solid blue;
 }
 
 .bap {

@@ -27,6 +27,9 @@ npm run start // wait while Webpack builds your project
 // visit http://localhost:3000 in your browser
 ```
 
+Note that in development (on your local machine), the app will be almost 3MB (if you check it in Chrome DevTools). This
+reduces to about 130K when you build it for production, so don't be alarmed!
+
 ## How did this originate?
 
 See [Christian Alfoni's blog post](http://www.christianalfoni.com/articles/2015_04_19_The-ultimate-webpack-setup) for details on the technical webpack setup. This
