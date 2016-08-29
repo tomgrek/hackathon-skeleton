@@ -12,7 +12,7 @@ function main() {
     const webpack = require('webpack');
     const webpackMiddleware = require('webpack-dev-middleware');
     const webpackHotMiddleware = require('webpack-hot-middleware');
-    const config = require('./webpack.config.js');
+    const config = require('../webpack.config.js');
 
     const mongoose = require('mongoose');
 
@@ -78,17 +78,17 @@ function main() {
       });
 
       // if the routes above didn't do anything, then do this:
-      app.get('*', function response(req, res) {
-        res.write(middleware.fileSystem.readFileSync(path.join(__dirname, 'dist/index.html')));
+      app.get('/', function response(req, res) {
+        res.write(middleware.fileSystem.readFileSync(path.join(__dirname, '../dist/index.html')));
         res.end();
       });
 
       // but if we're in production, do this instead:
     } else {
       app.use('/public', express.static('public'));
-      app.use(express.static(__dirname + '/dist'));
+      app.use(express.static(__dirname + '../dist'));
       app.get('/', function response(req, res) {
-        res.sendFile(path.join(__dirname, 'dist/index.html'));
+        res.sendFile(path.join(__dirname, '../dist/index.html'));
       });
     }
 
@@ -103,4 +103,4 @@ function main() {
 main();
 
 // import functions from other files as follows (which is good practice)
-var multiply = require('./functions/multiply.js').multiply;
+var multiply = require('../functions/multiply.js').multiply;
