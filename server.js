@@ -1,5 +1,5 @@
 /* Skeleton server application
-to get started at localhost: npm install / npm run start
+to get started at localhost: npm install / npm run start_dev
 on the server: npm install / npm run build / docker build -t [imageName] .
 then start a mongo container: screen docker run --restart=always --name devMongo -p 27017:27017 -d mongo
 then deploy: docker run  --restart=always [--name MyContainer] --link devMongo:devMongo -p [PORT exposed to the outside e.g. 80]:3000 [imageName]
@@ -27,15 +27,21 @@ function main() {
     var db = mongoose.connection;
     // error logging - you may want to handle this differently
     db.on('error',console.error);
+    // close the database connection on process exit
+    var gracefulExit = function() {
+      db.close(function () {
+        console.log('Database connection safely closed.');
+        process.exit(0);
+      });
+    }
+    process.on('SIGINT', gracefulExit).on('SIGTERM', gracefulExit);
 
-    /* some simple, example db operations.
+    /*some simple, example db operations.
     db.once('open', function() {
-      var nameSchema = mongoose.Schema({ _id: String, name: String });
-      var Name = mongoose.model('Name', nameSchema);
+      const Name = require('./models/Name.js');
       var aFirstDataItem = new Name({_id:'1',name:'Created within bootcamp-skeleton'});
       aFirstDataItem.save( function(err,data) { console.log(data); });
       Name.find({}).then(function(data) { console.log(data); });
-      db.close();
     });*/
 
     // default port is 3000, unless you've set an environment variable

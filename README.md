@@ -23,12 +23,19 @@ npm install -g mocha // so mocha can be run from the command line
 cd bootcamp-skeleton
 npm install
 npm run test // all tests should pass
-npm run start // wait while Webpack builds your project
+npm run start_dev // wait while Webpack builds your project
 // visit http://localhost:3000 in your browser
 ```
 
 Note that in development (on your local machine), the app will be almost 3MB (if you check it in Chrome DevTools). This
 reduces to about 130K when you build it for production, so don't be alarmed!
+
+Instead of ```npm run start_dev``` you can also run ```npm run start```. The *start_dev* option runs **nodemon**,
+which restarts/rebuilds on changes to your *server side* code. (Hot reload only works with front-end.) You'll still
+need to reload your browser to view any changes, but at least you don't have to Ctrl-C out of the running node
+process first. I've only set up nodemon for dev mode, that is, local machine building and testing. It's not
+used by the Docker deployment. Note that if you don't have nodemon (and mocha) installed globally, you may need to
+do that - ```npm install -g nodemon mocha```.
 
 ## How did this originate?
 

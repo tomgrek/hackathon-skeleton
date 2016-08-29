@@ -22,6 +22,7 @@
   "scripts": {
     "test": "mocha ./test/tests.js || true",
     "start": "node server",
+    "start_dev": "nodemon server",
     "build": "rimraf dist && cross-env NODE_ENV=production webpack --config ./webpack.production.config.js --progress --profile --colors",
     "eslint": "eslint .",
     "jscs": "jscs ."
@@ -57,6 +58,7 @@
     "json-loader": "^0.5.3",
     "mocha": "^2.3.3",
     "mocha-jsdom": "^1.0.0",
+    "nodemon": "^1.10.2",
     "postcss-loader": "^0.6.0",
     "react-addons-test-utils": "^15.3.1",
     "react-transform-hmr": "^1.0.0",
