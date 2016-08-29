@@ -2,7 +2,7 @@
 
 A skeleton (boilerplate) for quickly getting started on coding bootcamp projects. Suitable for prototyping and quick deployment. State-of-the-art, best practices, efficient web development.
 
-This README file also contains complete instructions for deploying projects made with this template to a brand new cloud server running Ubuntu.
+This README file also contains *complete* instructions for deploying projects made with this template to a brand new cloud server running Ubuntu 16.
 
 # What's in it?
 
@@ -51,7 +51,9 @@ Set the machine's time-zone: ```dpkg-reconfigure tz-data```.
 Set up the machine with ```hostname dev``` ('dev' is my machine name here) and by editing /etc/hosts.
 You'll need to have a domain name, with DNS (I use Google Domains) pointing to the Linode's IP address. (The domain I use is exploitip.com).
 
-Whilst you're playing with the DNS, create a sub-domain to deploy your project to. Or create many, e.g. project1.exploitip.com, project2.exploitip.com, etc. Point them at the Linode.
+Whilst you're playing with the DNS, create a sub-domain to deploy your project to. Or create many, e.g. project1.exploitip.com, project2.exploitip.com, etc. This guide describes the latter, slightly
+more complicated situation, assuming you don't want to spin up a server for each project (until you start to
+scale, that is!) But you can easily cut bits out and follow this guide -- including the Docker bits -- if you want a strictly one project, one (or many) server approach, say if you start getting more traffic. Point each sub-domain at the Linode.
 
 Next, run (as root) ```apt-get update && apt-get install dmsetup```. Then run ```dmsetup mknodes```. I don't know what dmsetup does, only that due to some incompatibility
 between Docker and Ubuntu 16, you need to do this before installing Docker, otherwise the install hangs.
@@ -169,8 +171,7 @@ mv /etc/nginx/sites-available /etc/nginx/sites-enabled
 service nginx restart
 ```
 
-I don't personally like the way nginx is configured to have sites-available and sites-enabled folders; I always forget which is which. So I delete one. This is probably
-bad practice but this is a quick starter, not a bulletproof dev-ops guide!
+I don't personally like the way nginx is configured to have sites-available and sites-enabled folders; I always forget which is which. So I delete one. This is probably not best practice but this is a quick starter, not a bulletproof dev-ops guide!
 
 Next, edit /etc/nginx/sites-enabled/default
 
@@ -185,10 +186,51 @@ server {
 }
 ```
 
+find ips from /var/log/mail.log and /var/log/syslog
+iptables -L
+iptables -I INPUT -s 116.31.116.25 -j DROP
+iptables-save
+service iptables-persistent save
+service iptables-persistent restart
+
 Than run ```service nginx restart```.
 
 You can add many such entries, one for each project you make! It's why you set up sub-domains earlier. Keep a note of the ports you use, as those
 are the ones we need to expose from Docker. You can choose any port number that doesn't conflict with a running service, so not e.g. 80 which is HTTP, 443 which is SSL etc.
+
+You may want to edit /var/www/index.html. With a fresh install of nginx, a visitor to the root domain (in my case, exploitip.com or www.exploitip.com) will see a "Welcome to nginx!" message.
+
+#### About SSL (HTTPS)
+
+You can serve each site/sub-domain using both http and https, or just https if you want. By default (i.e. if you don't
+do anything from this section), each site will be http only. If that's fine, ignore this section and deem it as
+'unnecessary complication'!
+
+For HTTPS, get started with the wonderful Let's Encrypt, by following the guide
+at [DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-16-04),
+as if you were installing SSL on a regular server, except that:
+
+```
+./letsencrypt-auto certonly -a webroot --webroot-path=/var/www/html -d example.com -d www.example.com
+should be
+./letsencrypt-auto certonly -a webroot --webroot-path=/var/www/html -d example.com -d www.example.com -d project1.example.com -d project2.example.com (...etc. Let's Encrypt doesn't support wildcard certificates, so you need to set it up for every sub-domain.)
+```
+
+And each sub-domain's server block should look like this:
+
+```
+server {
+	listen 80; # or leave this out to disable http and permit https only
+	listen 443 ssl http2;
+	server name project.exploitip.com;
+	location / {
+		proxy_pass http://127.0.0.1:8081;
+	}
+}
+```
+
+I'll add that the file ```/etc/nginx/snippets/ssl-params.conf``` was missing on my server. I just created a file with
+that name, and added one line: ```ssl_protocols TLSv1.1 TLSv1.2;```
 
 ### Test the configuration
 
