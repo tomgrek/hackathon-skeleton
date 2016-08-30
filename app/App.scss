@@ -17,18 +17,26 @@ html {
 body {
   width: 100%;
 }
-
-/* This is a little bit of SASS */
-$myred: #ee440f;
-
 .app {
-  background-color: $myred;
-  height: 6em;
-  margin: 2em 2em 0 2em;
-  border: 3px solid blue;
+  width: 100%;
+  height: 100%;
 }
+/* This is a little bit of SASS */
+$softWhite: #fefdfd;
+$softBlack: #444;
 
-.bap {
-  background-color: red;
-  height: 25px;
+.successBox {
+  background-color: $softWhite;
+  margin: 0;
+  border: 2px dashed $softBlack;
+  max-height: 6em;
+  position: relative;
+  top: 10%;
+  width: 90%;
+  left: 5%;
+  font-family: sans-serif;
+  text-align: center;
+  line-height: 6em;
+  font-size: 2em;
+  color: $softBlack;
 }

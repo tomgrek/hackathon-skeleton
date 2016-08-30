@@ -4,6 +4,8 @@ A skeleton (boilerplate) for quickly getting started on coding bootcamp projects
 
 This README file also contains *complete* instructions for deploying projects made with this template to a brand new cloud server running Ubuntu 16.
 
+[View a demo](https://twitter-clone-react.exploitip.com) of a simple Twitter-alike made with this skeleton, and [view the source](https://github.com/tomgrek/twitter-clone-react).
+
 # What's in it?
 
 * Runs on (requires) Node JS
