@@ -6,16 +6,18 @@ This README file also contains *complete* instructions for deploying projects ma
 
 [View a demo](https://twitter-clone-react.exploitip.com) of a simple Twitter-alike made with this skeleton, and [view the source](https://github.com/tomgrek/twitter-clone-react).
 
+You need basic Linux, HTML and JS knowledge to get the most out of this guide and the repo as a whole. If you follow the guide and apply some trial and error, you might gain that knowledge. I try my best to explain jargon when it crops up.
+
 # What's in it?
 
-* Runs on (requires) Node JS
-* Deploys to a Docker container, with Nginx at the front of your server directing requests to the right container. This means you can easily deploy many sites on one server!
-* Uses Webpack for compilation, minifying, live reloading
-* Uses Express for routing / running a back-end server
-* Front-end is built in Javascript (JSX) using React
-* Has SASS for compiling CSS
-* Uses Mongo at the backend, providing a database
-* Has Mocha, Chai, and Zombie for automated tests - back-end *and* front-end!
+* Runs on (requires) Node JS (write front- and back-end code in Javascript!)
+* Deploys to a Docker container, with Nginx at the front of your server directing requests to the right container. This means you can easily deploy many sites on one server! Docker is basically a lightweight (so, fast) virtual machine.
+* Uses Webpack for compilation (transforming new JS syntax for older browsers, using Babel), minifying, live reloading.
+* Uses Express for routing / running a back-end server (Express is a common npm package.)
+* Front-end is built in Javascript (JSX) using React (React adds a bit of JS to your user's website download, but there really isn't much for you to learn, and webapps become simpler to write - change a variable somewhere and automatically the DOM is updated in the client.)
+* Has SASS for compiling CSS (Writing CSS -- styling websites -- is complex, repetitive, and random. SASS helps a bit.)
+* Uses Mongo at the backend, providing a database (All non-static websites require a db)
+* Has Mocha, Chai, and Zombie for automated tests - back-end *and* front-end! (Tests are considered good practice. They are especially useful when you're working with other people and integrating their code.)
 
 ## How to use it?
 
@@ -291,6 +293,7 @@ Now you can visit http://project1.exploitip.com (or whatever domain and sub-doma
 
 # TODO
 
+* Add Redux for simplified state management across components
 * Add optional layout and commonly used components (separate branch)
 * Remove embedded HOWTO code and put it into this guide instead (maybe)
 * Extend guide with React Native for Android/iOS app development (separate branch)

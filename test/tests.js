@@ -1,5 +1,5 @@
 console.log('Running Tests');
-var server = require('../server.js');
+var server = require('../server/server.js');
 var chai = require('chai'), expect = chai.expect, should = chai.should();
 var chaiHttp = require('chai-http');
 
