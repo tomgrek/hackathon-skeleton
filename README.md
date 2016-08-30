@@ -41,6 +41,8 @@ do that - ```npm install -g nodemon mocha```.
 
 ## How did this originate?
 
+I like the black box that is Meteor, but wanted that workflow from the ground up, using all the latest technologies.
+
 See [Christian Alfoni's blog post](http://www.christianalfoni.com/articles/2015_04_19_The-ultimate-webpack-setup) for details on the technical webpack setup. This
 project began as a fork of his [repo](https://github.com/christianalfoni/webpack-express-boilerplate).
 
@@ -289,4 +291,8 @@ Now you can visit http://project1.exploitip.com (or whatever domain and sub-doma
 
 # TODO
 
-* Use pm2 to manage the running node process
+* Add optional layout and commonly used components (separate branch)
+* Remove embedded HOWTO code and put it into this guide instead (maybe)
+* Extend guide with React Native for Android/iOS app development (separate branch)
+* Add passport.js/socket.io examples
+* Add MQTT/IOT example using ESP8266
