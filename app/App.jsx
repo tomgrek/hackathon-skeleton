@@ -13,11 +13,11 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     // don't set initial state like this any more (although it still works and is fine):
-    // this.state = { text: "dont do this" };
+    // this.state = { text: "you can, but probably shouldn't, do it like this" };
   }
   componentDidMount() {
-    // can get refs to other DOM nodes as follows
-    console.log(this.refs.mySuccessBox.state);
+    // can get refs to other (child) DOM nodes as follows
+    // console.log(this.refs.mySuccessBox.state);
   }
   // a few other React methods:
   // componentWillMount() {}
