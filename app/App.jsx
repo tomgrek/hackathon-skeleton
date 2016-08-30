@@ -14,7 +14,6 @@ export default class App extends React.Component {
     super(props);
     // don't set initial state like this any more (although it still works and is fine):
     // this.state = { text: "dont do this" };
-    console.log(this.refs.mySuccessBox);
   }
   componentDidMount() {
     // can get refs to other DOM nodes as follows
