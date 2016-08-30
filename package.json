@@ -5,7 +5,7 @@
   "main": "server.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tomgrek/webpack-express-boilerplate.git"
+    "url": "https://github.com/tomgrek/bootcamp-skeleton.git"
   },
   "keywords": [
     "express",
@@ -13,12 +13,12 @@
     "node",
     "react"
   ],
-  "author": "Tom Grek, forked from Christian Alfoni",
+  "author": "Tom Grek",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/tomgrek/webpack-express-boilerplate/issues"
+    "url": "https://github.com/tomgrek/bootcamp-skeleton/issues"
   },
-  "homepage": "https://github.com/tomgrek/webpack-express-boilerplate",
+  "homepage": "https://github.com/tomgrek/bootcamp-skeleton",
   "scripts": {
     "test": "mocha --timeout 8000 ./test/tests.js || true",
     "start": "node ./server/server.js",
