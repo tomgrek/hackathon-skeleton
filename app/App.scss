@@ -39,4 +39,6 @@ $softBlack: #444;
   line-height: 6em;
   font-size: 2em;
   color: $softBlack;
+  -webkit-user-select: none;
+  cursor: default;
 }
