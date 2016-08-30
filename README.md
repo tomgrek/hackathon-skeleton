@@ -2,11 +2,11 @@
 
 A skeleton (boilerplate) for quickly getting started on coding bootcamp projects. Suitable for prototyping and quick deployment. State-of-the-art, best practices, efficient web development.
 
-This README file also contains *complete* instructions for deploying projects made with this template to a brand new cloud server running Ubuntu 16.
+This README file also contains **complete** instructions for deploying projects made with this template to a brand new cloud server running Ubuntu 16. No reason to tie yourself to platforms like Heroku when it's all achievable from scratch with only a little bit more effort.
 
 [View a demo](https://twitter-clone-react.exploitip.com) of a simple Twitter-alike made with this skeleton, and [view the source](https://github.com/tomgrek/twitter-clone-react).
 
-You need basic Linux, HTML and JS knowledge to get the most out of this guide and the repo as a whole. If you follow the guide and apply some trial and error, you might gain that knowledge. I try my best to explain jargon when it crops up and am not afraid to oversimplify.
+You need basic Linux, HTML and JS knowledge to get the most out of this guide and the repo as a whole. If, as a beginner, you follow the guide and apply some trial and error, you might (I hope) gain that knowledge. I try my best to explain jargon when it crops up and am not afraid to oversimplify.
 
 # What's in it?
 
@@ -50,16 +50,16 @@ project began as a fork of his [repo](https://github.com/christianalfoni/webpack
 
 ## How to deploy?
 
-First, you need a server. I use Linode. Deploy a fresh Ubuntu 16.04 and SSH into it. Since this is a bunch of projects and not a real deployment, stick with root access for simplicity.
+First, you need a server. I use Linode. Deploy a fresh Ubuntu 16.04 and SSH into it. Since this is designed for a bunch of learning projects and not a real deployment, stick with root access for simplicity. If you want to deploy forreals, adding user groups and setting permissions is not that hard. You might then also want to add CSRF protection and header rewriting (see helmet.js).
 
-Set the machine's time-zone: ```dpkg-reconfigure tz-data```.
+First, a little bit of sysadmin. Set the machine's time-zone: ```dpkg-reconfigure tz-data```.
 
 Set up the machine with ```hostname dev``` ('dev' is my machine name here) and by editing /etc/hosts.
 You'll need to have a domain name, with DNS (I use Google Domains) pointing to the Linode's IP address. (The domain I use is exploitip.com).
 
 Whilst you're playing with the DNS, create a sub-domain to deploy your project to. Or create many, e.g. project1.exploitip.com, project2.exploitip.com, etc. This guide describes the latter, slightly
 more complicated situation, assuming you don't want to spin up a server for each project (until you start to
-scale, that is!) But you can easily cut bits out and follow this guide -- including the Docker bits -- if you want a strictly one project, one (or many) server approach, say if you start getting more traffic. Point each sub-domain at the Linode.
+scale, that is!) But you can easily cut bits out and still follow this guide -- including the Docker bits -- if you want a strictly one project, one (or many) server approach, say if you start getting more traffic. Point each sub-domain at the Linode.
 
 Next, run (as root) ```apt-get update && apt-get install dmsetup```. Then run ```dmsetup mknodes```. I don't know what dmsetup does, only that due to some incompatibility
 between Docker and Ubuntu 16, you need to do this before installing Docker, otherwise the install hangs.
@@ -142,7 +142,7 @@ Create a new repo on Github, then do the following to upload your code:
 git init
 git status // see what's changed. Use this often
 git add .
-git commit // then type the commit message, save and quit. Better than using the -m "Commit message" switch!
+git commit // then type the commit message, save and quit. According to my bootcamp, this is better than using the -m "Commit message" switch!
 git remote add origin https://github.com/[yourGithubUsername]/[your repo name].git // only do this once
 git push origin master
 ```
@@ -298,8 +298,9 @@ Because a full-stack dev's work is never done.
 * Add a dangerouslySetInnerHTML example
 * Add Redux for simplified state management across components
 * Add optional layout and commonly used components including pagination and auto-complete (separate branch)
-* Remove embedded HOWTO code and put it into this guide instead (maybe)
+* Remove embedded HOWTO code from the JS and put it into this guide instead (maybe)
 * Extend guide with React Native for Android/iOS app development (separate branch)
 * Extend guide with React Native desktop development info, Windows, Linux, and Mac OS (separate branch)
-* Add passport.js/socket.io examples
-* Add MQTT/IOT example using ESP8266
+* Add passport.js/socket.io examples (separate branch)
+* Add MQTT/IOT example using ESP8266 (separate branch. I like hardware!)
+* Re-do this guide for a Raspberry Pi instead of a cloud server. (I *really* like hardware!)
