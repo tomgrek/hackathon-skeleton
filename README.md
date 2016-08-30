@@ -6,7 +6,7 @@ This README file also contains *complete* instructions for deploying projects ma
 
 [View a demo](https://twitter-clone-react.exploitip.com) of a simple Twitter-alike made with this skeleton, and [view the source](https://github.com/tomgrek/twitter-clone-react).
 
-You need basic Linux, HTML and JS knowledge to get the most out of this guide and the repo as a whole. If you follow the guide and apply some trial and error, you might gain that knowledge. I try my best to explain jargon when it crops up.
+You need basic Linux, HTML and JS knowledge to get the most out of this guide and the repo as a whole. If you follow the guide and apply some trial and error, you might gain that knowledge. I try my best to explain jargon when it crops up and am not afraid to oversimplify.
 
 # What's in it?
 
@@ -38,8 +38,8 @@ Instead of ```npm run start_dev``` you can also run ```npm run start```. The *st
 which restarts/rebuilds on changes to your *server side* code. (Hot reload only works with front-end.) You'll still
 need to reload your browser to view any changes, but at least you don't have to Ctrl-C out of the running node
 process first. I've only set up nodemon for dev mode, that is, local machine building and testing. It's not
-used by the Docker deployment. Note that if you don't have nodemon (and mocha) installed globally, you may need to
-do that - ```npm install -g nodemon mocha```.
+used by the Docker deployment. Note that if you don't have nodemon installed globally, you will need to
+do that in addition to mocha - ```npm install -g nodemon```.
 
 ## How did this originate?
 
@@ -293,9 +293,13 @@ Now you can visit http://project1.exploitip.com (or whatever domain and sub-doma
 
 # TODO
 
+Because a full-stack dev's work is never done.
+
+* Add a dangerouslySetInnerHTML example
 * Add Redux for simplified state management across components
-* Add optional layout and commonly used components (separate branch)
+* Add optional layout and commonly used components including pagination and auto-complete (separate branch)
 * Remove embedded HOWTO code and put it into this guide instead (maybe)
 * Extend guide with React Native for Android/iOS app development (separate branch)
+* Extend guide with React Native desktop development info, Windows, Linux, and Mac OS (separate branch)
 * Add passport.js/socket.io examples
 * Add MQTT/IOT example using ESP8266
