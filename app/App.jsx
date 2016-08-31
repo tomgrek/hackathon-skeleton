@@ -6,18 +6,10 @@ import styles from './App.scss';
 import SuccessBox from './SuccessBox.jsx';
 
 export default class App extends React.Component {
-  // set initial state in ES2016 as follows
-  state = {
-    text: 'If you can see this, it worked :)'
-  }
   constructor(props) {
     super(props);
-    // don't set initial state like this any more (although it still works and is fine):
-    // this.state = { text: "you can, but probably shouldn't, do it like this" };
   }
   componentDidMount() {
-    // can get refs to other (child) DOM nodes as follows
-    // console.log(this.refs.mySuccessBox.state);
   }
   // a few other React methods:
   // componentWillMount() {}
@@ -25,11 +17,10 @@ export default class App extends React.Component {
   // componentWillUpdate() {}
   // componentDidUpdate() {}
   // componentWillUnmount() {}
-
   render() {
     return (
       <div id="app">
-        <SuccessBox ref="mySuccessBox" text={this.state.text} />
+        <SuccessBox ref="mySuccessBox" />
       </div>
     );
   }

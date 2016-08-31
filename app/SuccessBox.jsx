@@ -1,11 +1,10 @@
-import React from 'react';
-import styles from './App.scss';
+import React, {PropTypes} from 'react';
 
-export default class SuccessBox extends React.Component {
-  // the text in the box was passed as a prop from the App component. Here we add that to the component's state
+import {connect} from 'react-redux';
+
+class SuccessBox2 extends React.Component {
+  // State here refers to only the component's local state
   state = {
-    text: this.props.text,
-    clicks: 0,
     inputTextValue: 'Demo input box'
   }
   constructor(props) {
@@ -15,7 +14,7 @@ export default class SuccessBox extends React.Component {
     this.inputTextChanged = this.inputTextChanged.bind(this);
   }
   boxClick(evt) {
-    this.setState({clicks: this.state.clicks+1});
+    this.props.dispatch({type: 'ADD_CLICK'});
   }
   inputTextChanged(evt) {
     this.setState({inputTextValue: evt.target.value});
@@ -25,9 +24,20 @@ export default class SuccessBox extends React.Component {
     // in practice, you may wish to wrap inputs in a form and handle onSubmit.
     return (
       <div id="successBox1" className="successBox" onClick={this.boxClick}>
-        {this.state.text} - clicked {this.state.clicks} times<br />
+        {this.props.text} - clicked {this.props.numClicks} times<br />
         <input type="text" onChange={this.inputTextChanged} value={this.state.inputTextValue} style={{border:"1px solid black", lineHeight: "1.2em", height: "2em"}}/>
       </div>
     );
   }
 }
+
+const mapStateToProps = function(state) {
+  return {
+    numClicks: state.clicks,
+    text: state.text
+  };
+}
+
+const SuccessBox = connect(mapStateToProps)(SuccessBox2);
+
+export default SuccessBox;
