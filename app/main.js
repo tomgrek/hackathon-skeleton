@@ -6,14 +6,13 @@ import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 
 function reducer(state, action) {
-  if (state===undefined) state = {clicks: 0, text: 'If you can see this, it works :)'};
-  let newState = {clicks: state.clicks, text: state.text};
+  if (state===undefined) return {clicks: 0, text: 'If you can see this, it works :)'};
   switch(action.type) {
     case 'ADD_CLICK': {
-      newState.clicks = newState.clicks + 1;
+      // clone the object! the state arg must not be mutated or your app will break
+      return Object.assign({}, state, {clicks: state.clicks + 1});
     }
   }
-  return newState;
 }
 
 export const store = createStore(reducer);

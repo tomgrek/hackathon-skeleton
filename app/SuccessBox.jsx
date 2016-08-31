@@ -2,7 +2,7 @@ import React, {PropTypes} from 'react';
 
 import {connect} from 'react-redux';
 
-class SuccessBox2 extends React.Component {
+class SuccessBox extends React.Component {
   // State here refers to only the component's local state
   state = {
     inputTextValue: 'Demo input box'
@@ -38,6 +38,4 @@ const mapStateToProps = function(state) {
   };
 }
 
-const SuccessBox = connect(mapStateToProps)(SuccessBox2);
-
-export default SuccessBox;
+export default connect(mapStateToProps)(SuccessBox);
