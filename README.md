@@ -15,6 +15,8 @@ You need basic Linux, HTML and JS knowledge to get the most out of this guide an
 * Uses Webpack for compilation (transforming new JS syntax for older browsers, using Babel), minifying, live reloading.
 * Uses Express for routing / running a back-end server (Express is a common npm package.)
 * Front-end is built in Javascript (JSX) using React (React adds a bit of JS to your user's website download, but there really isn't much for you to learn, and webapps become simpler to write - change a variable somewhere and automatically the DOM is updated in the client.)
+* Redux for centralized state management. (Redux enforces some 'good' coding styles, but more importantly, centralizes
+the state of your app - useful because with many components each having their own local state, using & debugging React can begin to feel like pushing spaghetti up a hill.)
 * Has SASS for compiling CSS (Writing CSS -- styling websites -- is complex, repetitive, and random. SASS helps a bit.)
 * Uses Mongo at the backend, providing a database (All non-static websites require a db)
 * Has Mocha, Chai, and Zombie for automated tests - back-end *and* front-end! (Tests are considered good practice. They are especially useful when you're working with other people and integrating their code.)
@@ -296,11 +298,12 @@ Now you can visit http://project1.exploitip.com (or whatever domain and sub-doma
 Because a full-stack dev's work is never done.
 
 * Add a dangerouslySetInnerHTML example
-* Add Redux for simplified state management across components
+* Add Redux for simplified state management across components (DONE)
+* Add react-router for ease of making/managing single page apps
 * Add optional layout and commonly used components including pagination and auto-complete (separate branch)
 * Remove embedded HOWTO code from the JS and put it into this guide instead (maybe)
 * Extend guide with React Native for Android/iOS app development (separate branch)
 * Extend guide with React Native desktop development info, Windows, Linux, and Mac OS (separate branch)
 * Add passport.js/socket.io examples (separate branch)
 * Add MQTT/IOT example using ESP8266 (separate branch. I like hardware!)
-* Re-do this guide for a Raspberry Pi instead of a cloud server. (I *really* like hardware!)
+* Re-do this guide for a Raspberry Pi instead of a cloud server.
