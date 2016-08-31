@@ -2,7 +2,10 @@ import React from 'react';
 import {render} from 'react-dom';
 
 import { Router, Route, browserHistory } from 'react-router';
+
 import App from './App.jsx';
+import SuccessBox from './SuccessBox.jsx';
+import UrlParamBox from './UrlParamBox.jsx';
 import FourOhFour from './FourOhFour.jsx';
 
 import {createStore} from 'redux';
@@ -24,10 +27,14 @@ export const store = createStore(reducer);
 render(
   <Provider store={store}>
     <Router history={browserHistory}>
-        <Route path="/" component={App} title="[Path /]"/>
-        <Route path="abc/:id" component={App} title="[Path abc]"/>
-        <Route path="*" component={FourOhFour}/>
+      <Route component={App} title="[Path]">
+          <Route path="/" component={SuccessBox} />
+          <Route path="abc/:id" component={UrlParamBox} />
+          <Route path="*" component={FourOhFour}/>
+      </Route>
     </Router>
   </Provider>,
   document.getElementById('root')
 );
+
+//   <ReactCSSTransitionGroup transitionName="page-transition">

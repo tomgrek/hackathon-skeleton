@@ -51,3 +51,18 @@ $softBlack: #444;
   -webkit-user-select: none;
   cursor: default;
 }
+
+.page-transition-enter {
+  transition: opacity 1s ease-out;
+  opacity: 0;
+}
+.page-transition-enter.page-transition-enter-active {
+  opacity: 1;
+}
+.page-transition-leave {
+  transition: opacity 1s ease-out;
+  opacity: 1;
+}
+.page-transition-leave.page-transition-leave-active {
+  opacity: 0;
+}
