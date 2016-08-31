@@ -19,6 +19,9 @@ You need basic Linux, HTML and JS knowledge to get the most out of this guide an
 * Uses Mongo at the backend, providing a database (All non-static websites require a db)
 * Has Mocha, Chai, and Zombie for automated tests - back-end *and* front-end! (Tests are considered good practice. They are especially useful when you're working with other people and integrating their code.)
 
+If you want to use Redux for centralized state management (it's probably worth it - redux simplifies React a bit), switch
+to [this branch](https://github.com/tomgrek/bootcamp-skeleton/tree/with-redux).
+
 ## How to use it?
 
 ```
@@ -296,7 +299,8 @@ Now you can visit http://project1.exploitip.com (or whatever domain and sub-doma
 Because a full-stack dev's work is never done.
 
 * Add a dangerouslySetInnerHTML example
-* Add Redux for simplified state management across components
+* Add Redux for simplified state management across components (DONE)
+* Add react-router for ease of making/managing single page apps
 * Add optional layout and commonly used components including pagination and auto-complete (separate branch)
 * Remove embedded HOWTO code from the JS and put it into this guide instead (maybe)
 * Extend guide with React Native for Android/iOS app development (separate branch)
