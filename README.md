@@ -8,6 +8,8 @@ This README file also contains **complete** instructions for deploying projects 
 
 You need basic Linux, HTML and JS knowledge to get the most out of this guide and the repo as a whole. If, as a beginner, you follow the guide and apply some trial and error, you might (I hope) gain that knowledge. I try my best to explain jargon when it crops up and am not afraid to oversimplify.
 
+This is the branch with Redux and React Router.
+
 # What's in it?
 
 * Runs on (requires) Node JS (write front- and back-end code in Javascript!)
@@ -17,6 +19,8 @@ You need basic Linux, HTML and JS knowledge to get the most out of this guide an
 * Front-end is built in Javascript (JSX) using React (React adds a bit of JS to your user's website download, but there really isn't much for you to learn, and webapps become simpler to write - change a variable somewhere and automatically the DOM is updated in the client.)
 * Redux for centralized state management. (Redux enforces some 'good' coding styles, but more importantly, centralizes
 the state of your app - useful because with many components each having their own local state, using & debugging React can begin to feel like pushing spaghetti up a hill.)
+* React Router for client-side routing, especially good for single page apps. It simplifies routing quite a bit. Server-side routing is still there too, for REST end-points (for example). This does not allow you to time-travel, i.e. undo user
+actions that were dispatched with Redux. For that, use [react-router-redux](https://www.npmjs.com/package/react-router-redux).
 * Has SASS for compiling CSS (Writing CSS -- styling websites -- is complex, repetitive, and random. SASS helps a bit.)
 * Uses Mongo at the backend, providing a database (All non-static websites require a db)
 * Has Mocha, Chai, and Zombie for automated tests - back-end *and* front-end! (Tests are considered good practice. They are especially useful when you're working with other people and integrating their code.)
@@ -299,7 +303,7 @@ Because a full-stack dev's work is never done.
 
 * Add a dangerouslySetInnerHTML example
 * Add Redux for simplified state management across components (DONE)
-* Add react-router for ease of making/managing single page apps
+* Add react-router for ease of making/managing single page apps (DONE)
 * Add optional layout and commonly used components including pagination and auto-complete (separate branch)
 * Remove embedded HOWTO code from the JS and put it into this guide instead (maybe)
 * Extend guide with React Native for Android/iOS app development (separate branch)
@@ -307,3 +311,4 @@ Because a full-stack dev's work is never done.
 * Add passport.js/socket.io examples (separate branch)
 * Add MQTT/IOT example using ESP8266 (separate branch. I like hardware!)
 * Re-do this guide for a Raspberry Pi instead of a cloud server.
+* Add info on SEO / server-side rendering

@@ -77,17 +77,17 @@ function main() {
         res.end();
       });
 
-      // if the routes above didn't do anything, then do this:
-      app.get('/', function response(req, res) {
+      // if the routes above didn't do anything, then just pass it to React Router
+      app.get('*', function response(req, res) {
         res.write(middleware.fileSystem.readFileSync(path.join(__dirname, '../dist/index.html')));
         res.end();
       });
 
       // but if we're in production, do this instead:
     } else {
-      app.use('/public', express.static('public'));
+      //app.use('/public', express.static('public'));
       app.use(express.static(__dirname + '../dist'));
-      app.get('/', function response(req, res) {
+      app.get('*', function response(req, res) {
         res.sendFile(path.join(__dirname, '../dist/index.html'));
       });
     }

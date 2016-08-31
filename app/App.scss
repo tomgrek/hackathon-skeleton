@@ -25,6 +25,15 @@ body {
 $softWhite: #fefdfd;
 $softBlack: #444;
 
+.header {
+  width: 100%;
+  display: inline-block;
+  height: 2em;
+  background-color: aliceblue;
+  font-family: sans-serif;
+  font-size: 1.6em;
+  line-height: 2em;
+}
 .successBox {
   background-color: $softWhite;
   margin: 0;
