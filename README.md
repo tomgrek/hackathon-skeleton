@@ -19,8 +19,8 @@ You need basic Linux, HTML and JS knowledge to get the most out of this guide an
 * Uses Mongo at the backend, providing a database (All non-static websites require a db)
 * Has Mocha, Chai, and Zombie for automated tests - back-end *and* front-end! (Tests are considered good practice. They are especially useful when you're working with other people and integrating their code.)
 
-If you want to use Redux for centralized state management (it's probably worth it - redux simplifies React a bit), switch
-to [this branch](https://github.com/tomgrek/bootcamp-skeleton/tree/with-redux).
+If you want to use Redux (it's probably worth it - redux simplifies React a bit), switch
+to [this branch](https://github.com/tomgrek/bootcamp-skeleton/tree/with-redux). If you don't know Redux, well, it enforces some 'good' coding styles, but more importantly, centralizes the state of your app - useful because with many components each having their own local state, using & debugging React can begin to feel like pushing spaghetti up a hill.
 
 ## How to use it?
 
@@ -307,4 +307,4 @@ Because a full-stack dev's work is never done.
 * Extend guide with React Native desktop development info, Windows, Linux, and Mac OS (separate branch)
 * Add passport.js/socket.io examples (separate branch)
 * Add MQTT/IOT example using ESP8266 (separate branch. I like hardware!)
-* Re-do this guide for a Raspberry Pi instead of a cloud server. (I *really* like hardware!)
+* Re-do this guide for a Raspberry Pi instead of a cloud server.
