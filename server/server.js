@@ -13,9 +13,9 @@ function main() {
     const webpackMiddleware = require('webpack-dev-middleware');
     const webpackHotMiddleware = require('webpack-hot-middleware');
     const config = require('../webpack.config.js');
-    
+
     const fs = require('fs');
-    
+
     const mongoose = require('mongoose');
 
     // dev mode (hot reload etc) is default, unless you set the environment variable
@@ -55,6 +55,12 @@ function main() {
     // e.g. on the filesystem /home/app/public/jquery.js would become http://localhost:3000/jquery.js
     app.use(express.static('public'));
 
+    // an example route
+    app.get('/example_rest_endpoint/:id', function response(req, res) {
+      res.write(`hello ${req.params.id}`); // or you can use res.json({some object})
+      res.end();
+    });
+
     // bundle a bunch of useful things in if we're in dev mode (i.e. running on local machine)
     if (isDeveloping) {
       const compiler = webpack(config);
@@ -72,13 +78,6 @@ function main() {
       });
       app.use(middleware);
       app.use(webpackHotMiddleware(compiler));
-
-      // an example route
-      app.get('/example_rest_endpoint/:id', function response(req, res) {
-        res.write(`hello ${req.params.id}`); // or you can use res.json({some object})
-        res.end();
-      });
-
       // if the routes above didn't do anything, then just pass it to React Router
       app.get('*', function response(req, res) {
         res.write(middleware.fileSystem.readFileSync(path.join(__dirname, '../dist/index.html')));
@@ -89,17 +88,15 @@ function main() {
     } else {
       app.use(express.static(__dirname + '../dist'));
       app.get('*', function response(req, res) {
-	//console.log(req); 
-	//console.log('asdasd'); console.log(__dirname+'/..'+req.url); 
-        //fs.exists(path.join(__dirname + '/..', req.url), function(exists) {
-		if (req.url!=='/'&&req.url.slice(1,4)!='abc') { // its not one of our react routes, so send the actual file
-			console.log('/opt/app/dist'+ req.url + 'exists!');
-			res.sendFile(path.join('/opt/app/dist', req.url)); // i guess should generalize this
-		} else { // it is one of our reqct routes, so send the index file.
-			console.log(__dirname + '/..'+ req.url + 'its in our');
-			res.sendFile(path.join(__dirname, '../dist/index.html'));
-		}
-	  //  });
+
+          if (req.url!=='/'&&req.url.slice(1,4)!='abc') { // its not one of our react routes, so send the actual file
+            console.log('/opt/app/dist'+ req.url + 'exists!');
+            res.sendFile(path.join('/opt/app/dist', req.url)); // i guess should generalize this
+          } else { // it is one of our reqct routes, so send the index file.
+            console.log(__dirname + '/..'+ req.url + 'its in our');
+            res.sendFile(path.join(__dirname, '../dist/index.html'));
+          }
+
       });
     }
 
