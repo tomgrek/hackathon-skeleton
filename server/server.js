@@ -100,3 +100,5 @@ function main() {
 }
 
 main();
+// import functions from other files like so:
+// var multiply = require('../functions/multiply.js').multiply;
