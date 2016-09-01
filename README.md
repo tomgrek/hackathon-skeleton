@@ -22,6 +22,10 @@ You need basic Linux, HTML and JS knowledge to get the most out of this guide an
 If you want to use Redux (it's probably worth it - redux simplifies React a bit), switch
 to [this branch](https://github.com/tomgrek/bootcamp-skeleton/tree/with-redux). If you don't know Redux, well, it enforces some 'good' coding styles, but more importantly, centralizes the state of your app - useful because with many components each having their own local state, using & debugging React can begin to feel like pushing spaghetti up a hill.
 
+If you want to use React Router (client side routing - great for single page apps) in addition to server side routing (so you
+	can still have REST endpoints etc), have a look at [this branch](https://github.com/tomgrek/bootcamp-skeleton/tree/with-redux-and-react-router). It
+	also includes Redux and animated component transitions.
+
 ## How to use it?
 
 ```
