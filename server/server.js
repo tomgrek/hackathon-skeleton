@@ -53,6 +53,12 @@ function main() {
     // e.g. on the filesystem /home/app/public/jquery.js would become http://localhost:3000/jquery.js
     app.use(express.static('public'));
 
+    // an example route
+    app.get('/example_rest_endpoint/:id', function response(req, res) {
+      res.write(`hello ${req.params.id}`); // or you can use res.json({some object})
+      res.end();
+    });
+
     // bundle a bunch of useful things in if we're in dev mode (i.e. running on local machine)
     if (isDeveloping) {
       const compiler = webpack(config);
@@ -70,27 +76,20 @@ function main() {
       });
       app.use(middleware);
       app.use(webpackHotMiddleware(compiler));
-
-      // an example route
-      app.get('/example_rest_endpoint/:id', function response(req, res) {
-        res.write(`hello ${req.params.id}`); // or you can use res.json({some object})
-        res.end();
-      });
-
-      // if the routes above didn't do anything, then do this:
-      app.get('/', function response(req, res) {
+      // if the routes above didn't do anything, then just pass it to React Router
+      app.get('*', function response(req, res) {
         res.write(middleware.fileSystem.readFileSync(path.join(__dirname, '../dist/index.html')));
         res.end();
       });
 
       // but if we're in production, do this instead:
-    } else {
-      app.use('/public', express.static('public'));
+      } else {
       app.use(express.static(__dirname + '../dist'));
-      app.get('/', function response(req, res) {
-        res.sendFile(path.join(__dirname, '../dist/index.html'));
-      });
-    }
+      app.get('*', function response(req, res) {
+          console.log(__dirname + '/..'+ req.url + 'its in our');
+          res.sendFile(path.join(__dirname, '../dist/index.html'));
+        });
+      }
 
     app.listen(port, '0.0.0.0', function onStart(err) {
       if (err) {
@@ -98,9 +97,6 @@ function main() {
       }
       console.info('Listening on port %s.', port);
     });
-};
+}
 
 main();
-
-// import functions from other files as follows (which is good practice)
-var multiply = require('../functions/multiply.js').multiply;

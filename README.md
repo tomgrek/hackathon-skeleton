@@ -21,6 +21,10 @@ the state of your app - useful because with many components each having their ow
 * Uses Mongo at the backend, providing a database (All non-static websites require a db)
 * Has Mocha, Chai, and Zombie for automated tests - back-end *and* front-end! (Tests are considered good practice. They are especially useful when you're working with other people and integrating their code.)
 
+If you want to use React Router (client side routing - great for single page apps) in addition to server side routing (so you
+	can still have REST endpoints etc), have a look at [this branch](https://github.com/tomgrek/bootcamp-skeleton/tree/with-redux). It
+	also includes Redux, and features animated component transitions.
+
 ## How to use it?
 
 ```
