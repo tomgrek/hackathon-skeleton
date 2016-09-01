@@ -36,5 +36,3 @@ render(
   </Provider>,
   document.getElementById('root')
 );
-
-//   <ReactCSSTransitionGroup transitionName="page-transition">

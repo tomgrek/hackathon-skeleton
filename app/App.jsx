@@ -26,10 +26,10 @@ class App extends React.Component {
     return (
       <div id="app">
         <span className="header">
-          <Link to="/abc/A_URL_Parameter">Try clicking me</Link>
+          <Link to="/abc/A_URL_Parameter" activeClassName="youAreHere">Try clicking me</Link>
           <Link to="#" onClick={this.context.router.goBack} style={{float:"right"}}>GO BACK</Link>
         </span>
-        <ReactCSSTransitionGroup component="div" transitionName="page-transition" >
+        <ReactCSSTransitionGroup component="div" transitionName="page-transition" transitionEnterTimeout={100} transitionLeaveTimeout={100}>
           {React.cloneElement(this.props.children, {key: this.props.location.key})}
         </ReactCSSTransitionGroup>
       </div>
