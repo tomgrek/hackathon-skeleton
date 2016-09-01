@@ -24,6 +24,7 @@ function reducer(state, action) {
 export const store = createStore(reducer);
 
 // with React Router, you can nest these routes
+// note that when you add a top level route here e.g. / or abc, need to make corresponding changes in server/server.js
 render(
   <Provider store={store}>
     <Router history={browserHistory}>
