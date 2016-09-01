@@ -9,9 +9,12 @@ RUN cp -a /tmp/node_modules /opt/app
 
 WORKDIR /opt/app/
 ADD package.json /opt/app/
+RUN mkdir /opt/app/server
 COPY *.js /opt/app/
+COPY server/* /opt/app/server/
 RUN mkdir /opt/app/dist
 COPY dist/* /opt/app/dist/
+RUN mkdir /opt/app/public
 COPY public/* /opt/app/public/
 EXPOSE 3000
 ENV NODE_ENV production

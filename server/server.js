@@ -13,7 +13,9 @@ function main() {
     const webpackMiddleware = require('webpack-dev-middleware');
     const webpackHotMiddleware = require('webpack-hot-middleware');
     const config = require('../webpack.config.js');
-
+    
+    const fs = require('fs');
+    
     const mongoose = require('mongoose');
 
     // dev mode (hot reload etc) is default, unless you set the environment variable
@@ -87,7 +89,17 @@ function main() {
     } else {
       app.use(express.static(__dirname + '../dist'));
       app.get('*', function response(req, res) {
-        res.sendFile(path.join(__dirname, '../dist/index.html'));
+	//console.log(req); 
+	//console.log('asdasd'); console.log(__dirname+'/..'+req.url); 
+        //fs.exists(path.join(__dirname + '/..', req.url), function(exists) {
+		if (req.url!=='/'&&req.url.slice(1,4)!='abc') { // its not one of our react routes, so send the actual file
+			console.log('/opt/app/dist'+ req.url + 'exists!');
+			res.sendFile(path.join('/opt/app/dist', req.url)); // i guess should generalize this
+		} else { // it is one of our reqct routes, so send the index file.
+			console.log(__dirname + '/..'+ req.url + 'its in our');
+			res.sendFile(path.join(__dirname, '../dist/index.html'));
+		}
+	  //  });
       });
     }
 
@@ -100,6 +112,3 @@ function main() {
 };
 
 main();
-
-// import functions from other files as follows (which is good practice)
-var multiply = require('../functions/multiply.js').multiply;
