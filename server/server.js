@@ -85,7 +85,6 @@ function main() {
 
       // but if we're in production, do this instead:
     } else {
-      //app.use('/public', express.static('public'));
       app.use(express.static(__dirname + '../dist'));
       app.get('*', function response(req, res) {
         res.sendFile(path.join(__dirname, '../dist/index.html'));

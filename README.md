@@ -21,6 +21,7 @@ This is the branch with Redux and React Router.
 the state of your app - useful because with many components each having their own local state, using & debugging React can begin to feel like pushing spaghetti up a hill.)
 * React Router for client-side routing, especially good for single page apps. It simplifies routing quite a bit. Server-side routing is still there too, for REST end-points (for example). This does not allow you to time-travel, i.e. undo user
 actions that were dispatched with Redux. For that, use [react-router-redux](https://www.npmjs.com/package/react-router-redux).
+* React CSS Transition Group for animating between route changes
 * Has SASS for compiling CSS (Writing CSS -- styling websites -- is complex, repetitive, and random. SASS helps a bit.)
 * Uses Mongo at the backend, providing a database (All non-static websites require a db)
 * Has Mocha, Chai, and Zombie for automated tests - back-end *and* front-end! (Tests are considered good practice. They are especially useful when you're working with other people and integrating their code.)
