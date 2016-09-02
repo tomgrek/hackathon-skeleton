@@ -39,7 +39,7 @@ npm run start_dev // wait while Webpack builds your project
 ```
 
 Note that in development (on your local machine), the app will be almost 3MB (if you check it in Chrome DevTools). This
-reduces to about 130K when you build it for production, so don't be alarmed!
+reduces to about 130K (this branch: ~250K) when you build it for production, so don't be alarmed!
 
 Instead of ```npm run start_dev``` you can also run ```npm run start```. The *start_dev* option runs **nodemon**,
 which restarts/rebuilds on changes to your *server side* code. (Hot reload only works with front-end.) You'll still

@@ -95,6 +95,11 @@ function main() {
       });
     }
 
+    // if all else fails, send a 404 error using the React 404 component
+    app.use(function(err, req, res, next) {
+      res.status(404).sendFile(path.join(__dirname, '../dist/index.html'));
+    });
+
     app.listen(port, '0.0.0.0', function onStart(err) {
       if (err) {
         console.log(err);
