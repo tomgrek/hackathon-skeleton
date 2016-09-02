@@ -36,6 +36,7 @@ npm install
 npm run test // all tests should pass
 npm run start_dev // wait while Webpack builds your project
 // visit http://localhost:3000 in your browser
+// to test as if in production mode, run: NODE_ENV=production PORT=3000 npm run start
 ```
 
 Note that in development (on your local machine), the app will be almost 3MB (if you check it in Chrome DevTools). This
