@@ -86,8 +86,8 @@ function main() {
       app.get('*', function response(req, res) {
           // be sure to specify all React routes (see app/main.js) (at least to their first /) here.
           // they must not be used by a name in the filesystem, i.e. anything in the 'public' dir.
-          var reactRoutes = ['/','abc'];
-          if (reactRoutes.reduce((acc,rt)=>rt===req.url?acc=1:acc,0) === 0) {
+          var reactRoutes = ['/abc'];
+          if (reactRoutes.reduce((acc,rt)=>rt===req.url.slice(0,rt.length)?acc=acc+1:acc,0) === 0) {
             res.sendFile(path.join(__dirname, '../dist', req.url));
           } else {
             res.sendFile(path.join(__dirname, '../dist/index.html'));
