@@ -26,6 +26,8 @@ If you want to use React Router (client side routing - great for single page app
 	can still have REST endpoints etc), have a look at [this branch](https://github.com/tomgrek/bootcamp-skeleton/tree/with-redux-and-react-router). It
 	also includes Redux and animated component transitions.
 
+If you want to use Passport (user login) - together with Redux and React Router, what I'll call a 'full stack' - use [this branch](https://github.com/tomgrek/bootcamp-skeleton/tree/fullstack).
+
 ## How to use it?
 
 ```
