@@ -8,7 +8,7 @@ This README file also contains **complete** instructions for deploying projects 
 
 You need basic Linux, HTML and JS knowledge to get the most out of this guide and the repo as a whole. If, as a beginner, you follow the guide and apply some trial and error, you might (I hope) gain that knowledge. I try my best to explain jargon when it crops up and am not afraid to oversimplify.
 
-This is the branch with Redux and React Router.
+This is the branch with Redux, React Router, and PassportJS.
 
 # What's in it?
 
@@ -21,6 +21,7 @@ This is the branch with Redux and React Router.
 the state of your app - useful because with many components each having their own local state, using & debugging React can begin to feel like pushing spaghetti up a hill.)
 * React Router for client-side routing, especially good for single page apps. It simplifies routing quite a bit. Server-side routing is still there too, for REST end-points (for example). This does not allow you to time-travel, i.e. undo user
 actions that were dispatched with Redux. For that, use [react-router-redux](https://www.npmjs.com/package/react-router-redux).
+* Passport.JS, means users can log in to your site. Note: No bcrypt2 yet.
 * React CSS Transition Group for animating between route changes
 * Has SASS for compiling CSS (Writing CSS -- styling websites -- is complex, repetitive, and random. SASS helps a bit.)
 * Uses Mongo at the backend, providing a database (All non-static websites require a db)
@@ -39,7 +40,7 @@ npm run start_dev // wait while Webpack builds your project
 ```
 
 Note that in development (on your local machine), the app will be almost 3MB (if you check it in Chrome DevTools). This
-reduces to about 130K (this branch: ~250K) when you build it for production, so don't be alarmed!
+reduces to about 130K (this branch: ~270K) when you build it for production, so don't be alarmed!
 
 Instead of ```npm run start_dev``` you can also run ```npm run start```. The *start_dev* option runs **nodemon**,
 which restarts/rebuilds on changes to your *server side* code. (Hot reload only works with front-end.) You'll still
