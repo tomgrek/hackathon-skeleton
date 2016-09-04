@@ -1,0 +1,71 @@
+/* This is a CSS reset */
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  vertical-align: baseline;
+  background: transparent;
+  color: black;
+  text-decoration: none;
+  height: 100%;
+}
+html {
+  font-size: 16px;
+  overflow: hidden;
+}
+body {
+  width: 100%;
+}
+.app {
+  width: 100%;
+  height: 100%;
+}
+/* This is a little bit of SASS */
+$softWhite: #fefdfd;
+$softBlack: #444;
+
+.header {
+  width: 100%;
+  display: inline-block;
+  height: 2em;
+  background-color: aliceblue;
+  font-family: sans-serif;
+  font-size: 1.6em;
+  line-height: 2em;
+}
+.successBox {
+  background-color: $softWhite;
+  margin: 0;
+  border: 2px dashed $softBlack;
+  max-height: 6em;
+  position: relative;
+  top: 10%;
+  width: 90%;
+  left: 5%;
+  font-family: sans-serif;
+  text-align: center;
+  line-height: 6em;
+  font-size: 2em;
+  color: $softBlack;
+  -webkit-user-select: none;
+  cursor: default;
+}
+
+.page-transition-enter {
+  transition: opacity 1s ease-out;
+  opacity: 0;
+}
+.page-transition-enter.page-transition-enter-active {
+  opacity: 1;
+}
+.page-transition-leave {
+  transition: opacity 1s ease-out;
+  opacity: 1;
+}
+.page-transition-leave.page-transition-leave-active {
+  opacity: 0;
+}
+.youAreHere {
+  text-decoration: line-through;
+}
