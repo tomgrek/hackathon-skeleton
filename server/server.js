@@ -45,10 +45,11 @@ function main() {
       db.once('open', function() {
       User.find({}).then(function(data) { console.log(data); });
       User.findById(new mongoose.Types.ObjectId('57cc9cc8a14964733c889966')).then(function(data) {
-        console.log('zig+++'+data);
+        console.log(data);
       });
       // the first time you run, uncomment this (or create user in mongo console)
-      //var newuser = new User({username:'t', password:'p'});
+      //var newuser = new User({username:'y'});
+      //newuser.password = newuser.generateHash('y');
       //newuser.save(function(err,data) { console.log(err,data); });
     });*/
 
@@ -82,7 +83,7 @@ function main() {
       User.findOne({ username: username }, function (err, user) {
         if (err) { return done(err); }
         if (!user) { return done(null, false); }
-        if (user.password!==password) { return done(null, false); }
+        if (!user.validPassword(password)) { return done(null, false); }
         return done(null, user);
       });
     }));
@@ -99,10 +100,15 @@ function main() {
       res.end();
     });
     app.post('/login',
-    passport.authenticate('local', { failureRedirect: '/login' }),
+    passport.authenticate('local', { failureRedirect: '/tryLogin/failed' }),
     function(req, res) {
       res.redirect('/');
     });
+
+    // be sure to specify all React routes (see app/main.js) (at least to their first /) here.
+    // they must not be used by a name in the filesystem, i.e. anything in the 'public' dir.
+    // set auth = true if the route requires being logged in
+    const reactRoutes = [{path: '/abc', auth: true}, {path: '/tryLogin', auth: false}];
 
     // bundle a bunch of useful things in if we're in dev mode (i.e. running on local machine)
     if (isDeveloping) {
@@ -123,20 +129,25 @@ function main() {
       app.use(webpackHotMiddleware(compiler));
       // if the routes above didn't do anything, then just pass it to React Router
       app.get('*', function response(req, res) {
-        res.write(middleware.fileSystem.readFileSync(path.join(__dirname, '../index.html')));
+        res.write(middleware.fileSystem.readFileSync(path.join(__dirname, '../dist/index.html')));
         res.end();
       });
     } else {
       app.use(express.static(__dirname + '../dist'));
       app.get('*', function response(req, res) {
-          // be sure to specify all React routes (see app/main.js) (at least to their first /) here.
-          // they must not be used by a name in the filesystem, i.e. anything in the 'public' dir.
-          var reactRoutes = ['/abc', '/tryLogin'];
-          if (reactRoutes.reduce((acc,rt)=>rt===req.url.slice(0,rt.length)?acc=acc+1:acc,0) === 0) {
-            res.sendFile(path.join(__dirname, '../dist', req.url));
-          } else {
-            res.sendFile(path.join(__dirname, '../dist/index.html'));
+          var routeFound = false;
+          for (var rt of reactRoutes) {
+            if (rt.path === req.url.slice(0, rt.path.length)) {
+              routeFound = true;
+              if (rt.auth === false || req.isAuthenticated()) {
+                res.sendFile(path.join(__dirname, '../dist/index.html'));
+              } else {
+                res.status(401).sendFile(path.join(__dirname, '../public', 'unauth.html'));
+              }
+              break;
+            }
           }
+          if (!routeFound) res.sendFile(path.join(__dirname, '../dist', req.url));
       });
     }
 

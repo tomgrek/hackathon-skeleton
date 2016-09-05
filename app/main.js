@@ -35,7 +35,7 @@ render(
       <Route component={App} title="[Path]">
           <Route path="/" component={SuccessBox} />
           <Route path="abc/:id" component={UrlParamBox} />
-          <Route path="tryLogin" component={LoginForm} />
+          <Route path="tryLogin(/:failed)" component={LoginForm} />
           <Route path="*" component={FourOhFour}/>
       </Route>
     </Router>

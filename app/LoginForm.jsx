@@ -5,6 +5,11 @@ export default class LoginForm extends React.Component {
   constructor(props) {
     super(props);
   }
+  componentDidMount() {
+    if (this.props.params.failed==='failed') {
+      alert('Incorrect Username or Password!');
+    }
+  }
   render() {
     return (
       <div>
