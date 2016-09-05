@@ -62,7 +62,7 @@ project began as a fork of his [repo](https://github.com/christianalfoni/webpack
 
 First, you need a server. I use Linode. Deploy a fresh Ubuntu 16.04 and SSH into it. Since this is designed for a bunch of learning projects and not a real deployment, stick with root access for simplicity. If you want to deploy forreals, adding user groups and setting permissions is not that hard. You might then also want to add CSRF protection and header rewriting (see helmet.js).
 
-First, a little bit of sysadmin. Set the machine's time-zone: ```dpkg-reconfigure tz-data```.
+First, a little bit of sysadmin. Set the machine's time-zone: ```dpkg-reconfigure tz-data```. Change the SSH port from the default 22 by ```nano /etc/ssh/sshd_config```, then restart the SSH daemon with ```service sshd restart```. From now on, SSH to the server with the -p switch, e.g. ```ssh root@exploitip.com -p 2288```.
 
 Set up the machine with ```hostname dev``` ('dev' is my machine name here) and by editing /etc/hosts.
 You'll need to have a domain name, with DNS (I use Google Domains) pointing to the Linode's IP address. (The domain I use is exploitip.com).
