@@ -21,7 +21,7 @@ function main() {
     const isDeveloping = process.env.NODE_ENV !== 'production';
 
     // connect to the mongo database
-    const mongoAddress = isDeveloping ? 'mongodb://localhosst/project' : 'mongodb://devMongo:27017/project';
+    const mongoAddress = isDeveloping ? 'mongodb://localhost/project' : 'mongodb://devMongo:27017/project';
     mongoose.Promise = Promise;
     mongoose.connect(mongoAddress);
     var db = mongoose.connection;
