@@ -36,13 +36,13 @@ function main() {
     }
     process.on('SIGINT', gracefulExit).on('SIGTERM', gracefulExit);
 
-    some simple, example db operations.
-    db.once('open', function() {
-      const Name = require('./models/Name.js');
-      var aFirstDataItem = new Name({_id:'1',name:'Created within bootcamp-skeleton'});
-      aFirstDataItem.save( function(err,data) { console.log(data); });
-      Name.find({}).then(function(data) { console.log(data); });
-    });
+    // some simple, example db operations.
+    // db.once('open', function() {
+    //   const Name = require('./models/Name.js');
+    //   var aFirstDataItem = new Name({_id:'1',name:'Created within bootcamp-skeleton'});
+    //   aFirstDataItem.save( function(err,data) { console.log(data); });
+    //   Name.find({}).then(function(data) { console.log(data); });
+    // });
 
     // default port is 3000, unless you've set an environment variable
     const port = isDeveloping ? 3000 : process.env.PORT;
