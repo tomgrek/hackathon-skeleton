@@ -1,6 +1,10 @@
-# Bootcamp Skeleton
+# Deprecated.
 
-A skeleton (boilerplate) for quickly getting started on coding bootcamp projects. Suitable for prototyping and quick deployment. State-of-the-art, best practices, efficient web development.
+This repo is a couple of years old. There are better skeletons out there. Don't use this!
+
+# Hackathon Skeleton
+
+A skeleton (boilerplate) for quickly getting started on hackathons projects. Suitable for prototyping and quick deployment. State-of-the-art, best practices, efficient web development.
 
 This README file also contains **complete** instructions for deploying projects made with this template to a brand new cloud server running Ubuntu 16. No reason to tie yourself to platforms like Heroku when it's all achievable from scratch with only a little bit more effort.
 
